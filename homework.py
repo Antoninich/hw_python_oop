@@ -146,15 +146,13 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
 
-    if workout_type == 'SWM':
-        swm = Swimming(*data)
-        return swm
-    elif workout_type == 'RUN':
-        run = Running(*data)
-        return run
-    elif workout_type == 'WLK':
-        wlk = SportsWalking(*data)
-        return wlk
+    workout_dict = {
+            'SWM': Swimming,
+            'RUN': Running,
+            'WLK': SportsWalking
+    }
+    workout = workout_dict.get(workout_type)(*data)
+    return workout
 
 
 def main(training: Training) -> None:
