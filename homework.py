@@ -147,9 +147,9 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
 
     workout_dict = {
-            'SWM': Swimming,
-            'RUN': Running,
-            'WLK': SportsWalking
+        'SWM': Swimming,
+        'RUN': Running,
+        'WLK': SportsWalking,
     }
     workout = workout_dict.get(workout_type)(*data)
     return workout
