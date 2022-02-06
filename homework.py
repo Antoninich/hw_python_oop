@@ -78,8 +78,8 @@ class Running(Training):
         duration_in_min = self.duration * 60
 
         calories = (
-                (COEFF_CALORIES_1 * self.get_mean_speed() - COEFF_CALORIES_2)
-                * self.weight / self.M_IN_KM * duration_in_min
+            (COEFF_CALORIES_1 * self.get_mean_speed() - COEFF_CALORIES_2)
+            * self.weight / self.M_IN_KM * duration_in_min
         )
         return calories
 
@@ -129,8 +129,9 @@ class Swimming(Training):
         """Получить среднюю скорость движения."""
 
         speed = (
-                self.length_pool * self.count_pool
-                / self.M_IN_KM / self.duration)
+            self.length_pool * self.count_pool / self.M_IN_KM
+            / self.duration
+        )
         return speed
 
     def get_spent_calories(self) -> float:
@@ -146,7 +147,7 @@ def read_package(workout_type: str, data: list) -> Union[Training, str]:
     """Прочитать данные полученные от датчиков."""
 
     """
-    Словрь состоит из 
+    Словрь состоит из:
     Имя тренировки: Класс тренировки, кол-во принимаемых свойств классом.
     """
     workout_dict = {
@@ -165,7 +166,7 @@ def read_package(workout_type: str, data: list) -> Union[Training, str]:
         return (f'Для тренировки {workout_type} переданы неверные данные')
     for num in data:
         if not str(num).replace('.', '', 1).isdigit():
-            return (f'Переданы нечисловые данные')
+            return ('Переданы нечисловые данные')
 
     workout = workout_value[0](*data)
     return workout
@@ -175,7 +176,7 @@ def main(training: Training) -> None:
     """Главная функция."""
 
     """
-    Если аргумент функции строка, значит была ошибка в данных. 
+    Если аргумент функции строка, значит была ошибка в данных.
     """
     try:
         info = training.show_training_info()
